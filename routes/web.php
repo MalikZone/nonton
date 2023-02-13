@@ -15,6 +15,14 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('admin', function () {
+    return 'Hi admin';
+})->middleware('role:admin');
+
+Route::get('user', function () {
+    return 'Hi user';
+})->middleware('role:user');
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -28,4 +36,4 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
